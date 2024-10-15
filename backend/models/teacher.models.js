@@ -1,14 +1,9 @@
 import mongoose from "mongoose";
 
 const teacherSchema = new mongoose.Schema({
-    teacherName: {
-        type: String,
-        required: true
-    },
-    email: {
-        type: String,
-        required: true,
-        unique: true
+    teacherInfo: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
     },
     department: {
         type: String,

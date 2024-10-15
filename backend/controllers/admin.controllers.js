@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs';
 import { User } from '../models/user.models.js'
+import { AdminNotice } from '../models/adminNotice.model.js';
 
 export const createUser = async (req, res) => {
     try {
@@ -122,6 +123,89 @@ export const deleteUsers = async (req, res) => {
     } catch (error) {
         return res.status(200).json({
             message: "Failed to deleted user",
+            success: false
+        })
+    }
+}
+
+export const createNotice = async (req, res) => {
+    try {
+        const { heading, content } = req.body
+
+        if (!heading || !content) {
+            return res.status(403).json({
+                message: "All fields are required",
+                success: false
+            })
+        }
+
+        const newNotice = await AdminNotice.create({
+            heading,
+            content
+        })
+
+        return res.status(200).json({
+            message: "Notice posted!",
+            success: true,
+            adminNotice: newNotice
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message: "Failed to post notice",
+            success: false,
+        })
+    }
+}
+
+export const getNotices = async (req, res) => {
+    try {
+        const notice = await AdminNotice.find()
+        if (!notice) {
+            return res.status(404).json({
+                message: "Notice not found",
+                success: false
+            })
+        }
+
+        return res.status(200).json({
+            message: "Admin notices found",
+            success: true,
+            notice
+        })
+    } catch (error) {
+        return res.status(500).json({
+            message: "Failed to fetch notice",
+            success: false,
+        })
+    }
+}
+
+export const deleteNotices = async (req, res) => {
+    try {
+        const { noticeId } = req.params
+        if (!noticeId) {
+            return res.status(404).json({
+                message: "Notice not found on this id",
+                success: false
+            })
+        }
+
+        const notice = await AdminNotice.findByIdAndDelete(noticeId)
+        if (notice) {
+            return res.status(403).json({
+                message: "Notice is not deleted",
+                success: false
+            })
+        }
+
+        return res.status(200).json({
+            message: "Notice deleted successfully",
+            success: true
+        })
+
+    } catch (error) {
+        return res.status(500).json({
+            message: "Failed to delete notice",
             success: false
         })
     }

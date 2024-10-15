@@ -25,9 +25,11 @@ app.use(cors(corsOptions))
 
 import userRoutes from './routes/user.routes.js'
 import adminRoutes from './routes/admin.routes.js'
+import teacherRoutes from './routes/teacher.routes.js'
 
 app.use('/api/v1/user', userRoutes);
 app.use('/api/v1/admin', adminRoutes)
+app.use('/api/v1/teacher', teacherRoutes)
 
 
 app.listen(PORT, () => {

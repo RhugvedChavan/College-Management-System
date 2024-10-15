@@ -11,7 +11,9 @@ const Sidebar = ({ isOpen, toggleSidebar, activeItem, menuItems }) => {
       } transition-transform duration-300 ease-in-out lg:translate-x-0 lg:static lg:inset-0`}
     >
       <div className=" p-5 ">
-        <span className="font-bold text-2xl text-violet-500">EduRac</span>
+        <Link to={"/"}>
+          <span className="font-bold text-2xl text-violet-500">EduRac</span>
+        </Link>
         <h1 className="text-lg font-semibold text-neutral-800">
           {role.toUpperCase()} Dashboard
         </h1>

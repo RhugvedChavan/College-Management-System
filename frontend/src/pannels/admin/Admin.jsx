@@ -9,7 +9,7 @@ const menuItems = [
     icon: <FaHome className="mr-4" />,
     text: "Dashboard",
     id: "dashboard",
-    path: "/admin/create-users",
+    path: "/admin/dashboard",
   },
   {
     icon: <FaBook className="mr-4" />,
@@ -31,12 +31,13 @@ const menuItems = [
   },
   {
     icon: <FaCog className="mr-4" />,
-    text: "Post notifications",
+    text: "Post Notices",
     id: "notifications",
+    path: "/admin/post-notices",
   },
 ];
 
-const Admin = ({ children }) => {
+const Admin = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [activeItem, setActiveItem] = useState("home");
 
