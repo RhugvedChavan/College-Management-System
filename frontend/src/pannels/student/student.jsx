@@ -9,30 +9,25 @@ const menuItems = [
     icon: <FaHome className="mr-4" />,
     text: "Dashboard",
     id: "dashboard",
-    path: "/admin/create-users",
+    path: "/student/my-dashboard",
   },
   {
     icon: <FaBook className="mr-4" />,
-    text: "Registration",
-    id: "registration",
-    path: "/admin/create-users",
+    text: "Assignments",
+    id: "assignments",
+    path: "#",
   },
   {
     icon: <FaCalendar className="mr-4" />,
-    text: "Teachers",
-    id: "teachers",
-    path: "/admin/teachers",
+    text: "Courses",
+    id: "courses",
+    path: "#",
   },
   {
     icon: <FaChartBar className="mr-4" />,
-    text: "Students",
-    id: "students",
-    path: "/admin/students",
-  },
-  {
-    icon: <FaCog className="mr-4" />,
-    text: "Post notifications",
+    text: "Notifications",
     id: "notifications",
+    path: "#",
   },
 ];
 
@@ -59,9 +54,6 @@ const Student = () => {
         <div className="flex items-start">
           <div className="w-[70%]">
             <Header toggleSidebar={toggleSidebar} />
-          </div>
-          <div className="w-[30%] bg-red-200 border-l-2 h-screen">
-            <h1>Profile</h1>
           </div>
         </div>
         <main className="flex-1 overflow-y-auto">

@@ -16,6 +16,8 @@ import Student from "./pannels/student/student";
 import PostNotice from "./pannels/admin/PostNotice";
 import MainDashboard from "./pannels/admin/MainDashboard";
 import CreateCourse from "./pannels/teacher/CreateCourse";
+import TeacherDashboard from "./pannels/teacher/TeacherDashboard";
+import StudentDashboard from "./pannels/student/StudentDashboard";
 
 const router = createBrowserRouter([
   {
@@ -39,6 +41,12 @@ const router = createBrowserRouter([
   {
     path: "/student",
     element: <Student />,
+    children: [
+      {
+        path: "my-dashboard",
+        element: <StudentDashboard />,
+      },
+    ],
   },
   {
     path: "/admin",
@@ -70,6 +78,10 @@ const router = createBrowserRouter([
     path: "/teacher",
     element: <Teacher />,
     children: [
+      {
+        path: "my-dashboard",
+        element: <TeacherDashboard />,
+      },
       {
         path: "create-course",
         element: <CreateCourse />,

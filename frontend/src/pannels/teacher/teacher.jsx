@@ -9,7 +9,7 @@ const menuItems = [
     icon: <FaHome className="mr-4" />,
     text: "Dashboard",
     id: "dashboard",
-    path: "/teacher/create-course",
+    path: "/teacher/my-dashboard",
   },
   {
     icon: <FaBook className="mr-4" />,
@@ -19,15 +19,15 @@ const menuItems = [
   },
   {
     icon: <FaCalendar className="mr-4" />,
-    text: "Teachers",
-    id: "teachers",
-    path: "/admin/teachers",
+    text: "Announcements",
+    id: "announcements",
+    path: "/teacher",
   },
   {
     icon: <FaChartBar className="mr-4" />,
-    text: "Students",
-    id: "students",
-    path: "/admin/students",
+    text: "Assignments",
+    id: "assignments",
+    path: "/teacher",
   },
   {
     icon: <FaCog className="mr-4" />,
