@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { BookOpenIcon, ShieldIcon, UserIcon } from "lucide-react";
+import axiosInstance from "../helpers/axiosConfig";
 
 export default function Register() {
   const [fullname, setFullname] = useState("");
@@ -19,8 +19,8 @@ export default function Register() {
 
     try {
       setLoading(true);
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/user/register",
+      const response = await axiosInstance.post(
+        "user/register",
         {
           fullname,
           email,

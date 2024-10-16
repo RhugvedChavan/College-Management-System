@@ -12,12 +12,12 @@ import Admin from "./pannels/admin/Admin";
 import CreateUsers from "./pannels/admin/CreateUsers";
 import AllTeachers from "./pannels/admin/AllTeachers";
 import AllStudents from "./pannels/admin/AllStudents";
-import Student from "./pannels/student/student";
 import PostNotice from "./pannels/admin/PostNotice";
 import MainDashboard from "./pannels/admin/MainDashboard";
 import CreateCourse from "./pannels/teacher/CreateCourse";
 import TeacherDashboard from "./pannels/teacher/TeacherDashboard";
 import StudentDashboard from "./pannels/student/StudentDashboard";
+import Student from "./pannels/student/Student";
 
 const router = createBrowserRouter([
   {

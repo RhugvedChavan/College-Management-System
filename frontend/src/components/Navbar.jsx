@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, GraduationCap } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { logout } from "../redux/userSlice";
+import axiosInstance from "../helpers/axiosConfig";
 
 const navLinks = [
   { name: "Home", path: "/" },
@@ -23,8 +23,8 @@ const Navbar = () => {
   const handleLogout = async () => {
     try {
       setLoading(true);
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/user/logout",
+      const response = await axiosInstance.post(
+        "user/logout",
         {},
         { withCredentials: true }
       );

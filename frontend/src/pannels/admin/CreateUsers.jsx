@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { BookOpenIcon, ShieldIcon, UserIcon } from "lucide-react";
+import axiosInstance from "../../helpers/axiosConfig";
 
 const CreateUsers = () => {
   const [fullname, setFullname] = useState("");
@@ -17,8 +18,8 @@ const CreateUsers = () => {
 
     try {
       setLoading(true);
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/user/register",
+      const response = await axiosInstance.post(
+        "user/register",
         {
           fullname,
           email,

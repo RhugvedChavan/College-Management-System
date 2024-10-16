@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { Loader2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import { login, setUser } from "../redux/userSlice";
+import axiosInstance from "../helpers/axiosConfig";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -20,8 +21,8 @@ export default function Login() {
 
     try {
       setLoading(true);
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/user/login",
+      const response = await axiosInstance.post(
+        "/user/login",
         {
           email,
           password,

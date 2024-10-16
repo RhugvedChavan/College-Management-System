@@ -3,6 +3,7 @@ import { Loader2 } from "lucide-react";
 import React, { useState } from "react";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../helpers/axiosConfig";
 
 const PostNotice = () => {
   const [heading, setHeading] = useState("");
@@ -14,8 +15,8 @@ const PostNotice = () => {
     e.preventDefault();
     try {
       setIsLoading(true);
-      const response = await axios.post(
-        "http://localhost:3000/api/v1/admin/post-notice",
+      const response = await axiosInstance.post(
+        "admin/post-notice",
         { heading, content },
         { withCredentials: true }
       );

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
+import axiosInstance from "../../helpers/axiosConfig";
 
 const CreateCourses = () => {
   const [courseData, setCourseData] = useState({
@@ -21,12 +22,11 @@ const CreateCourses = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post(
-        `http://localhost:3000/api/v1/teacher/create-course/${teacherId}`,
+      await axiosInstance.post(
+        `teacher/create-course/${teacherId}`,
         courseData,
         { withCredentials: true }
       );
-      // Optionally reset form or show success message here
     } catch (error) {
       console.error("Error creating course:", error);
     }
@@ -34,7 +34,6 @@ const CreateCourses = () => {
 
   return (
     <div className="container mx-auto p-8">
-      {/* Form to Create a New Course */}
       <div className="bg-white p-6 rounded-lg shadow-lg">
         <h2 className="text-2xl font-bold mb-4">Create New Course</h2>
         <form onSubmit={handleSubmit}>

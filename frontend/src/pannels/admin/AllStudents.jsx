@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { Loader2, Eye, Trash2 } from "lucide-react"
-import axios from 'axios'
+import axiosInstance from '../../helpers/axiosConfig'
 
 const AllStudents = () => {
   const [students, setStudents] = useState([])
@@ -13,7 +13,7 @@ const AllStudents = () => {
     const fetchStudents = async () => {
       try {
         setIsLoading(true)
-        const response = await axios('http://localhost:3000/api/v1/admin/students', {
+        const response = await axiosInstance.get('admin/students', {
           withCredentials: true
         })
         if (response.data.success) {
@@ -32,7 +32,7 @@ const AllStudents = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this student?')) {
       try {
-        await axios.delete(`http://localhost:3000/api/v1/admin/delete-user/${id}`, {
+        await axiosInstance.delete(`admin/delete-user/${id}`, {
           withCredentials: true
         })
         setStudents(students.filter(student => student.id !== id))

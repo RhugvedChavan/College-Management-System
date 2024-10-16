@@ -1,8 +1,9 @@
-import axios from "axios";
+
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { formatDateTime } from "../../helpers/globalHelper";
 import { Loader2 } from "lucide-react";
+import axiosInstance from "../../helpers/axiosConfig";
 
 const MainDashboard = () => {
   const [notices, setNotices] = useState([]);
@@ -15,8 +16,8 @@ const MainDashboard = () => {
       try {
         setLoading(true);
         setError(null);
-        const response = await axios.get(
-          "http://localhost:3000/api/v1/admin/admin-posted-notices",
+        const response = await axiosInstance.get(
+          "admin/admin-posted-notices",
           { withCredentials: true }
         );
         if (response.data.success) {
@@ -34,8 +35,8 @@ const MainDashboard = () => {
   const handleDelete = async (noticeId) => {
     try {
       setDeletingNoticeId(noticeId);
-      const response = await axios.delete(
-        `http://localhost:3000/api/v1/admin/delete-admin-notice/${noticeId}`,
+      const response = await axiosInstance.delete(
+        `admin/delete-admin-notice/${noticeId}`,
         { withCredentials: true }
       );
       if (response.data.success) {

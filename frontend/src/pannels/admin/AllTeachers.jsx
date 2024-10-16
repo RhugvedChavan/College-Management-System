@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import { Loader2, Eye, Trash2 } from "lucide-react"
 import axios from 'axios'
+import axiosInstance from '../../helpers/axiosConfig'
 
 const AllTeachers = () => {
   const [teachers, setTeachers] = useState([])
@@ -13,7 +14,7 @@ const AllTeachers = () => {
     const fetchTeachers = async () => {
       try {
         setIsLoading(true)
-        const response = await axios('http://localhost:3000/api/v1/admin/teachers', {
+        const response = await axiosInstance.get('admin/teachers', {
           withCredentials: true
         })
         if (response.data.success) {
@@ -32,7 +33,7 @@ const AllTeachers = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this teacher?')) {
       try {
-        await axios.delete(`http://localhost:3000/api/v1/admin/delete-user/${id}`, {
+        await axiosInstance.delete(`admin/delete-user/${id}`, {
           withCredentials: true
         })
         setTeachers(teachers.filter(teacher => teacher.id !== id))
