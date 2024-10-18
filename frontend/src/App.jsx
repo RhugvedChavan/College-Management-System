@@ -18,6 +18,7 @@ import CreateCourse from "./pannels/teacher/CreateCourse";
 import TeacherDashboard from "./pannels/teacher/TeacherDashboard";
 import StudentDashboard from "./pannels/student/StudentDashboard";
 import Student from "./pannels/student/Student";
+import CreatedCourses from "./pannels/teacher/CreatedCourses";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +86,10 @@ const router = createBrowserRouter([
       {
         path: "create-course",
         element: <CreateCourse />,
+      },
+      {
+        path: "courses",
+        element: <CreatedCourses />,
       },
     ],
   },

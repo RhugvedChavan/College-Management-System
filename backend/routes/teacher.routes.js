@@ -4,7 +4,7 @@ import { authenticateToken, authorizeRoles } from '../middlewares/auth.middlewar
 
 const router = express.Router();
 
-router.post('/create-course/:teacherId', authenticateToken, authorizeRoles('teacher'), createCourse);
+router.post('/create-course', authenticateToken, authorizeRoles('teacher'), createCourse);
 router.get('/all-courses', getAllCourses);
 router.get('/course-details/:courseId', getCourseById);
 router.put('/update-course/:courseId', authenticateToken, authorizeRoles('teacher'), updateCourse);

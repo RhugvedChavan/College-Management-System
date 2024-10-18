@@ -2,9 +2,15 @@ import { Course } from "../models/course.model.js";
 
 export const createCourse = async (req, res) => {
     try {
-        const teacherId = req.params
-        const { courseName, courseCode, description, startDate, endDate } = req.body;
+        const { courseName, teacherId, courseCode, description, startDate, endDate } = req.body;
 
+        if (!courseName || !courseCode || !description || !startDate || !endDate) {
+            return res.status(403).json({
+                message: "All fields are required",
+                success: false
+            })
+        }
+        
         const newCourse = await Course.create({
             courseName,
             courseCode,
@@ -12,10 +18,6 @@ export const createCourse = async (req, res) => {
             teacher: teacherId,
             startDate,
             endDate,
-            enrolledStudents: [],
-            materials: [],
-            assignments: [],
-            attendanceRecords: []
         });
 
         res.status(201).json({
@@ -24,10 +26,10 @@ export const createCourse = async (req, res) => {
             course: newCourse
         });
     } catch (error) {
+        console.log(error)
         res.status(500).json({
             message: 'Error creating course',
             succes: false,
-            error: error.message
         });
     }
 };
@@ -35,8 +37,19 @@ export const createCourse = async (req, res) => {
 
 export const getAllCourses = async (req, res) => {
     try {
-        const courses = await Course.find().populate('teacher').populate('enrolledStudents.studentId');
-        res.status(200).json(courses);
+        const courses = await Course.find();
+        
+        if (!courses) {
+            return res.status(403).json({
+                message: "Courses not found",
+                success: false
+            })
+        }
+
+        res.status(200).json({
+            message: "found",
+            course: courses
+        });
     } catch (error) {
         res.status(500).json({
             message: 'Error fetching courses',

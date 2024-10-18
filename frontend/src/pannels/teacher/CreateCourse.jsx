@@ -1,19 +1,26 @@
-import React, { useState } from "react";
-import axios from "axios";
+import { useState } from "react";
 import { useSelector } from "react-redux";
 import axiosInstance from "../../helpers/axiosConfig";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { Loader2 } from "lucide-react";
 
 const CreateCourses = () => {
+  const { user } = useSelector((state) => state.auth);
+  const teacherId = user.id;
+
   const [courseData, setCourseData] = useState({
     courseName: "",
     courseCode: "",
     description: "",
     startDate: "",
     endDate: "",
+    teacherId: teacherId,
   });
+  const [loading, setLoading] = useState(false)
 
-  const { user } = useSelector((state) => state.auth);
-  const teacherId = user.id;
+  const navigate = useNavigate()
+
 
   const handleChange = (e) => {
     setCourseData({ ...courseData, [e.target.name]: e.target.value });
@@ -22,13 +29,18 @@ const CreateCourses = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axiosInstance.post(
-        `teacher/create-course/${teacherId}`,
+      const response = await axiosInstance.post(
+        `teacher/create-course`,
         courseData,
         { withCredentials: true }
       );
+      if (response.data.success) {
+        navigate('/teacher/courses')
+        toast.success(response.data.message)
+      }
     } catch (error) {
       console.error("Error creating course:", error);
+      toast.error(error.message)
     }
   };
 
@@ -102,7 +114,15 @@ const CreateCourses = () => {
               type="submit"
               className="w-full px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             >
-              Create Course
+             {loading ? (
+                <span className="flex items-center justify-center gap-1">
+                  {" "}
+                  <Loader2 className="text-2xl font-bold text-neutral-800 animate-spin" />{" "}
+                  Creating course..
+                </span>
+              ) : (
+                "Create course"
+              )}
             </button>
           </div>
         </form>

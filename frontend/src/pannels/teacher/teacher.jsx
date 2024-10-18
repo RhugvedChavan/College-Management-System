@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import Header from "../dashboard/Header";
 import { FaHome, FaBook, FaCalendar, FaChartBar, FaCog } from "react-icons/fa";
 import Sidebar from "../dashboard/Sidebar";
@@ -16,6 +16,12 @@ const menuItems = [
     text: "Create courses",
     id: "courses",
     path: "/teacher/create-course",
+  },
+  {
+    icon: <FaBook className="mr-4" />,
+    text: "Courses",
+    id: "created courses",
+    path: "/teacher/courses",
   },
   {
     icon: <FaCalendar className="mr-4" />,
