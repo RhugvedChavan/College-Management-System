@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Calendar, Users, BookOpen, Clock } from "lucide-react";
 
-const CreatedCourses = () => {
+const AllCourses = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -36,6 +36,14 @@ const CreatedCourses = () => {
     fetchAllCourses();
   }, []);
 
+  const enrollYouself = (studnetId) => {
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
+
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
@@ -47,7 +55,7 @@ const CreatedCourses = () => {
   return (
     <div className="container mx-auto px-4 py-8">
       <h1 className="text-3xl font-bold text-gray-800 mb-6">
-        Courses
+        Your Created Courses
       </h1>
       {loading && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -101,9 +109,12 @@ const CreatedCourses = () => {
                       {course.materials ? course.materials.length : 0} materials
                     </span>
                   </div>
-                  <div className="flex items-center">
+                  <div className="flex items-center flex-col gap-3">
                     <Clock className="mr-2 h-4 w-4" />
-                    <span>Created {formatDate(course.createdAt)}</span>
+                    <span>Uploded on {formatDate(course.createdAt)}</span>
+                    <button onClick={() => enrollYouself(studentId)} className="px-3 py-2 text-white font-medium bg-violet-600 rounded-md hover:bg-violet-400">
+                      Enroll yourself
+                    </button>
                   </div>
                 </div>
               </div>
@@ -117,9 +128,7 @@ const CreatedCourses = () => {
             <h2 className="text-xl font-semibold text-gray-800 mb-2">
               No Courses Found
             </h2>
-            <p className="text-gray-600">
-              You haven't created any courses yet.
-            </p>
+            <p className="text-gray-600">You don't have any courses yet.</p>
           </div>
         )
       )}
@@ -127,4 +136,4 @@ const CreatedCourses = () => {
   );
 };
 
-export default CreatedCourses;
+export default AllCourses;

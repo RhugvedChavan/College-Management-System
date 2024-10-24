@@ -7,9 +7,7 @@ import axiosInstance from "../helpers/axiosConfig";
 
 const navLinks = [
   { name: "Home", path: "/" },
-  { name: "Courses", path: "/login" },
-  { name: "Features", path: "/login" },
-  { name: "Adminstration", path: "/login" },
+  { name: "Courses", path: "/student/courses" },
   { name: "Contact Us", path: "/login" },
 ];
 
@@ -57,7 +55,7 @@ const Navbar = () => {
         <div className="">
           {isAuthenticated ? (
             <div className="flex items-center justify-center gap-7">
-              <Link to={`/${dashboard}`}>
+              <Link to={`/${dashboard}/my-dashboard`}>
                 <button className="px-3 py-1.5 flex items-center justify-center gap-1 text-white font-semibold bg-violet-500 hover:bg-violet-400 transition-all duration-200 rounded-md outline-none">
                   Dashboard <ArrowRight />
                 </button>

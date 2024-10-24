@@ -21,6 +21,12 @@ const menuItems = [
     icon: <FaCalendar className="mr-4" />,
     text: "Courses",
     id: "courses",
+    path: "/student/courses",
+  },
+  {
+    icon: <FaCalendar className="mr-4" />,
+    text: "Enrolled courses",
+    id: "enrolled",
     path: "#",
   },
   {

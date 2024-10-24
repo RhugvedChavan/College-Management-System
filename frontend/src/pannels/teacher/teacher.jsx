@@ -33,7 +33,7 @@ const menuItems = [
     icon: <FaChartBar className="mr-4" />,
     text: "Assignments",
     id: "assignments",
-    path: "/teacher",
+    path: "/teacher/upload-assignments",
   },
   {
     icon: <FaCog className="mr-4" />,

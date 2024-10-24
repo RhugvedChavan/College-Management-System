@@ -19,6 +19,8 @@ import TeacherDashboard from "./pannels/teacher/TeacherDashboard";
 import StudentDashboard from "./pannels/student/StudentDashboard";
 import Student from "./pannels/student/Student";
 import CreatedCourses from "./pannels/teacher/CreatedCourses";
+import UploadAssignments from "./pannels/teacher/upload-assignments";
+import AllCourses from "./pannels/student/AllCourses";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +49,10 @@ const router = createBrowserRouter([
         path: "my-dashboard",
         element: <StudentDashboard />,
       },
+      {
+        path: "courses",
+        element: <AllCourses />,
+      },
     ],
   },
   {
@@ -54,7 +60,7 @@ const router = createBrowserRouter([
     element: <Admin />,
     children: [
       {
-        path: "dashboard",
+        path: "my-dashboard",
         element: <MainDashboard />,
       },
       {
@@ -90,6 +96,10 @@ const router = createBrowserRouter([
       {
         path: "courses",
         element: <CreatedCourses />,
+      },
+      {
+        path: "upload-assignments",
+        element: <UploadAssignments />,
       },
     ],
   },

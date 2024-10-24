@@ -8,12 +8,20 @@ export const createCourse = async (req, res) => {
             return res.status(403).json({
                 message: "All fields are required",
                 success: false
-            })
+            });
         }
-        
+
+        const existingCourse = await Course.findOne({ courseCode: courseCode.toString() });
+        if (existingCourse) {
+            return res.status(400).json({
+                message: 'Course with this code already exists',
+                success: false
+            });
+        }
+
         const newCourse = await Course.create({
             courseName,
-            courseCode,
+            courseCode: courseCode.toString(),
             description,
             teacher: teacherId,
             startDate,
@@ -26,13 +34,15 @@ export const createCourse = async (req, res) => {
             course: newCourse
         });
     } catch (error) {
-        console.log(error)
+        console.log(error);
         res.status(500).json({
             message: 'Error creating course',
-            succes: false,
+            success: false,
+            error: error.message
         });
     }
 };
+
 
 
 export const getAllCourses = async (req, res) => {

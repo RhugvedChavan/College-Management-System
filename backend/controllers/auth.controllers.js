@@ -98,7 +98,7 @@ export const handleLogin = async (req, res) => {
       message: `You have logged in as ${user.role}`,
       success: true,
       user: { id: user._id, fullname: user.fullname, email: user.email, role: user.role },
-      redirectUrl: `/${user.role}`
+      redirectUrl: `/${user.role}/my-dashboard`
     });
 
   } catch (error) {
