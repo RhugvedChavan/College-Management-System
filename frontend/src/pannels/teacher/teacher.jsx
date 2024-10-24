@@ -1,6 +1,6 @@
-import  { useState } from "react";
+import { useState } from "react";
 import Header from "../dashboard/Header";
-import { FaHome, FaBook, FaCalendar, FaChartBar, FaCog } from "react-icons/fa";
+import { FaHome, FaBook,} from "react-icons/fa";
 import Sidebar from "../dashboard/Sidebar";
 import { Outlet } from "react-router-dom";
 
@@ -22,23 +22,6 @@ const menuItems = [
     text: "Courses",
     id: "created courses",
     path: "/teacher/courses",
-  },
-  {
-    icon: <FaCalendar className="mr-4" />,
-    text: "Announcements",
-    id: "announcements",
-    path: "/teacher",
-  },
-  {
-    icon: <FaChartBar className="mr-4" />,
-    text: "Assignments",
-    id: "assignments",
-    path: "/teacher/upload-assignments",
-  },
-  {
-    icon: <FaCog className="mr-4" />,
-    text: "Post notifications",
-    id: "notifications",
   },
 ];
 

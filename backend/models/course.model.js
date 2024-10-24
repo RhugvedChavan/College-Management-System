@@ -16,14 +16,14 @@ const courseSchema = new mongoose.Schema({
     },
     teacher: {
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Teacher',
+        ref: 'User',
         required: true
     },
     enrolledStudents: [
         {
             studentId: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'Student'
+                ref: 'User'
             },
             enrollmentDate: {
                 type: Date,
@@ -57,7 +57,7 @@ const courseSchema = new mongoose.Schema({
                 {
                     studentId: {
                         type: mongoose.Schema.Types.ObjectId,
-                        ref: 'Student'
+                        ref: 'User'
                     },
                     fileLink: String,
                     submittedAt: {
@@ -73,7 +73,7 @@ const courseSchema = new mongoose.Schema({
         {
             studentId: {
                 type: mongoose.Schema.Types.ObjectId,
-                ref: 'Student',
+                ref: 'User',
             },
             date: {
                 type: Date,

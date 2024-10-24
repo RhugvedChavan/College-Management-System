@@ -46,9 +46,7 @@ const CreatedCourses = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
-        Courses
-      </h1>
+      <h1 className="text-3xl font-bold text-gray-800 mb-6">Courses</h1>
       {loading && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(3)].map((_, index) => (
@@ -80,7 +78,10 @@ const CreatedCourses = () => {
                     {course.courseCode}
                   </span>
                 </div>
-                <p className="text-gray-600 mb-4">{course.description}</p>
+                <p className="text-gray-600 mb-4">
+                  {course.description.slice(0, 60)}{" "}
+                  <span className="text-violet-500 text-sm">Read more...</span>
+                </p>
                 <div className="space-y-2 text-sm text-gray-500">
                   <div className="flex items-center">
                     <Calendar className="mr-2 h-4 w-4" />

@@ -12,12 +12,6 @@ const menuItems = [
     path: "/student/my-dashboard",
   },
   {
-    icon: <FaBook className="mr-4" />,
-    text: "Assignments",
-    id: "assignments",
-    path: "#",
-  },
-  {
     icon: <FaCalendar className="mr-4" />,
     text: "Courses",
     id: "courses",
@@ -27,7 +21,7 @@ const menuItems = [
     icon: <FaCalendar className="mr-4" />,
     text: "Enrolled courses",
     id: "enrolled",
-    path: "#",
+    path: "/student/enrolled-courses",
   },
   {
     icon: <FaChartBar className="mr-4" />,

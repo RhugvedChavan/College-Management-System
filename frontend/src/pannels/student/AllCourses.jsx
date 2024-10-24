@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { Calendar, Users, BookOpen, Clock } from "lucide-react";
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 const AllCourses = () => {
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const { user } = useSelector((state) => state.auth);
+  const studentId = user.id;
 
   useEffect(() => {
     const fetchAllCourses = async () => {
@@ -36,13 +40,6 @@ const AllCourses = () => {
     fetchAllCourses();
   }, []);
 
-  const enrollYouself = (studnetId) => {
-    try {
-      
-    } catch (error) {
-      
-    }
-  }
 
   const formatDate = (dateString) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -54,9 +51,7 @@ const AllCourses = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
-        Your Created Courses
-      </h1>
+      <h1 className="text-3xl font-bold text-gray-800 mb-6">Courses</h1>
       {loading && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {[...Array(3)].map((_, index) => (
@@ -75,50 +70,54 @@ const AllCourses = () => {
       {!loading && courses.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {courses.map((course) => (
-            <div
-              key={course._id}
-              className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300"
-            >
-              <div className="p-6">
-                <div className="flex justify-between items-center mb-2">
-                  <h2 className="text-xl font-semibold text-gray-800">
-                    {course.courseName}
-                  </h2>
-                  <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
-                    {course.courseCode}
-                  </span>
-                </div>
-                <p className="text-gray-600 mb-4">{course.description}</p>
-                <div className="space-y-2 text-sm text-gray-500">
-                  <div className="flex items-center">
-                    <Calendar className="mr-2 h-4 w-4" />
-                    <span>
-                      {formatDate(course.startDate)} -{" "}
-                      {formatDate(course.endDate)}
+            <Link to={`/student/course-details/${course._id}`} key={course._id}>
+              <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
+                <div className="p-6">
+                  <div className="flex justify-between items-center mb-2">
+                    <h2 className="text-xl font-semibold text-gray-800">
+                      {course.courseName}
+                    </h2>
+                    <span className="px-2 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
+                      {course.courseCode}
                     </span>
                   </div>
-                  <div className="flex items-center">
-                    <Users className="mr-2 h-4 w-4" />
-                    <span>
-                      {course.enrolledStudents.length} students enrolled
+                  <p className="text-gray-600 mb-4">
+                    {course.description.slice(0, 60)}{" "}
+                    <span className="text-violet-500 text-sm">
+                      Read more...
                     </span>
-                  </div>
-                  <div className="flex items-center">
-                    <BookOpen className="mr-2 h-4 w-4" />
-                    <span>
-                      {course.materials ? course.materials.length : 0} materials
-                    </span>
-                  </div>
-                  <div className="flex items-center flex-col gap-3">
-                    <Clock className="mr-2 h-4 w-4" />
-                    <span>Uploded on {formatDate(course.createdAt)}</span>
-                    <button onClick={() => enrollYouself(studentId)} className="px-3 py-2 text-white font-medium bg-violet-600 rounded-md hover:bg-violet-400">
-                      Enroll yourself
-                    </button>
+                  </p>
+                  <div className="space-y-2 text-sm text-gray-500">
+                    <div className="flex items-center">
+                      <Calendar className="mr-2 h-4 w-4" />
+                      <span>
+                        {formatDate(course.startDate)} -{" "}
+                        {formatDate(course.endDate)}
+                      </span>
+                    </div>
+                    <div className="flex items-center">
+                      <Users className="mr-2 h-4 w-4" />
+                      <span>
+                        {course.enrolledStudents.length} students enrolled
+                      </span>
+                    </div>
+                    <div className="flex items-center">
+                      <BookOpen className="mr-2 h-4 w-4" />
+                      <span>
+                        {course.materials ? course.materials.length : 0}{" "}
+                        materials
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-center pt-2">
+                      <span className="flex items-center rounded-full bg-violet-500 px-3 py-2 text-white font-semibold">
+                        <Clock className="mr-2 h-4 w-4" />
+                        Uploded on {formatDate(course.createdAt)}
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       ) : (

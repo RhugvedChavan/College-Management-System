@@ -19,8 +19,9 @@ import TeacherDashboard from "./pannels/teacher/TeacherDashboard";
 import StudentDashboard from "./pannels/student/StudentDashboard";
 import Student from "./pannels/student/Student";
 import CreatedCourses from "./pannels/teacher/CreatedCourses";
-import UploadAssignments from "./pannels/teacher/upload-assignments";
 import AllCourses from "./pannels/student/AllCourses";
+import CourseDetail from "./pannels/student/CourseDetail";
+import EnrolledCourses from "./pannels/student/EnrolledCourses";
 
 const router = createBrowserRouter([
   {
@@ -52,6 +53,14 @@ const router = createBrowserRouter([
       {
         path: "courses",
         element: <AllCourses />,
+      },
+      {
+        path: "course-details/:courseId",
+        element: <CourseDetail />,
+      },
+      {
+        path: "enrolled-courses",
+        element: <EnrolledCourses />,
       },
     ],
   },
@@ -96,10 +105,6 @@ const router = createBrowserRouter([
       {
         path: "courses",
         element: <CreatedCourses />,
-      },
-      {
-        path: "upload-assignments",
-        element: <UploadAssignments />,
       },
     ],
   },
