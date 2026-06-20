@@ -1,5 +1,6 @@
 # Project :- College Management System
 
+
 # Objective :- 
 
 1. The main objective of the College Management System is to develop a web-based application that automates and manages college activities such as student records, faculty details, course management,. 
